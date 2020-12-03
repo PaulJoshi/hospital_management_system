@@ -13,7 +13,7 @@ def patients() :
     print("\nLogin or Signup:")
     patient.name = input("\nEnter your name: ")
 
-    if patient.user_exists() :
+    if patient.patient_exists() :
 
         while True :
 
@@ -22,7 +22,9 @@ def patients() :
             choice = int(input("\nEnter your choice: "))
 
             if choice == 1 :
-                patient.make_appointment()
+                specialization = input("\nWhat specialization of doctor would you like to consult with? ")
+                print("No doctors of that specialization") if specialization == 0 else patient.make_appointment(specialization)
+                input("\nAppointment made successfully\nPress any key to continue...")
             
             elif choice == 2 :
                 appointments = patient.get_appointments()
@@ -80,23 +82,21 @@ def admins() :
         clrscr()
         print("\nAdmin's Dashboard\n\n1. View employees\n2. View patients\n3. Add Employee\n4. Update Employee\n5. Logout")
         choice = int(input("\nEnter your choice: "))
+        clrscr()
 
         if choice == 1 :
-            clrscr()
             print("\nEmployees")
             doctors = admin.view_all_employees()
             print(doctors)
             input("\nPress any key to continue...")
 
         if choice == 2 :
-            clrscr()
             print("\nPatients")
             patients = admin.view_all_patients()
             print(patients)
             input("\nPress any key to continue...")
 
         if choice == 3 :
-            clrscr()
             print("\nAdd Employee")
             name = input("\nEnter name: ")
             role = input("Enter role: ")
@@ -105,7 +105,6 @@ def admins() :
             input("\nEmployee Added Successfully\nPress any key to continue...")
 
         if choice == 4 :
-            clrscr()
             print("\nUpdate Employee")
             name = input("\nEnter name: ")
             role = input("Enter role: ")
@@ -125,7 +124,7 @@ def main() :
     while run :
 
         clrscr()
-        print("\nLogin for:\n\n1. Patients\n2. Doctors\n3. Managers")
+        print("\nLogin for:\n\n1. Patients\n2. Doctors\n3. Managers\n4. Exit")
         choice = int(input("\nEnter your choice: "))
 
         if choice == 1 :
@@ -137,7 +136,9 @@ def main() :
         elif choice == 3 :
             admins()
         
-        else : run = False
+        else : 
+            clrscr()
+            run = False
 
 if __name__ == "__main__" :
     main()

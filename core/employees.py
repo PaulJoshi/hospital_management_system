@@ -1,12 +1,13 @@
 import pickle
+import time
 
 class Doctor :
 
-    '''Methods'''
-
     def __init__(self, name):
+
         self.name = name
         self.specialization = None  # Get specialization from database
+    
 
     def get_appointments(self, doctor_name) :
 
@@ -28,6 +29,11 @@ class Doctor :
         ]
 
         return appointments
+    
+    def prescribe_medicine(self, patient_name) :
+
+        ''' Write medicine prescription name into most recent appointment list in database '''
+        
 
 
 class Nurse :

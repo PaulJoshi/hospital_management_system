@@ -1,19 +1,19 @@
 import pickle
+import time
 
 class Patient :
 
-    ''' Variables '''
+    def __init__(self):
 
-    name = ""
-    age = None
-    gender = ""
-
-
-    ''' Methods '''
+        self.name = ""
+        self.age = None
+        self.gender = ""
+    
 
     def create_user(self) :
 
         ''' Adds a new patient to "/database/patients.pkl" in database '''
+
 
     def patient_exists(self) :
 
@@ -21,10 +21,13 @@ class Patient :
 
         return 1
 
-    def make_appointment(self, doctor_name) :
+
+    def make_appointment(self, specialization) :
 
         ''' Adds an appointment to "/database/appointments.pkl" in database '''
 
+
+        return 0
 
 
     def update_user(self) :

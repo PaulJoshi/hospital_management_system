@@ -2,8 +2,6 @@ import pickle
 
 class Admin :
 
-    ''' Methods '''
-
     def add_employee(self, name, role, specialization) :
 
         ''' Adds a new employee to "/database/doctors.pkl" or "/database/nurses.pkl" or "/database/pharmacists.pkl" in database '''
