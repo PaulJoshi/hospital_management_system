@@ -26,9 +26,14 @@ class Patient :
 
         ''' Returns list of doctors with specified specialization '''
 
-
         doctors = []
-
+        with open("database/doctors.pkl", "rb") as file :
+            all_doctors = pickle.load(file)
+            for doctor in all_doctors:
+                if doctor[1].lower() == specialization.lower() :
+                    doctors.append(doctor)
+        if len(doctors) == 0:
+            return 0
         return doctors
 
 

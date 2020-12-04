@@ -2,11 +2,15 @@ import pickle
 
 with open("../database/doctors.pkl", "wb") as file :
     
-    doctors = [["Stephen Strange", "Surgeon"], ["Henry Wu", "Veterinary"]]
+    doctors = [["Stephen Strange", "Surgeon"], ["Henry Wu", "Veterinary"],["George","Ortho"]]
     pickle.dump(doctors, file)
 
+specialization = "Ortho"
 with open("../database/doctors.pkl", "rb") as file :
-    print(pickle.load(file))
+    all_doctors = pickle.load(file)
+    for doctor in all_doctors:
+        if doctor[1] == specialization :
+            print(doctor)
 
 
 
