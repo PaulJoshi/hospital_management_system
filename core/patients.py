@@ -20,9 +20,19 @@ class Patient :
         ''' Returns 1 if patient already exists, else, returns 0 '''
 
         return 1
+    
+
+    def get_doctors(self, specialization) :
+
+        ''' Returns list of doctors with specified specialization '''
 
 
-    def make_appointment(self, specialization) :
+        doctors = []
+
+        return doctors
+
+
+    def make_appointment(self, doctor) :
 
         ''' Adds an appointment to "/database/appointments.pkl" in database '''
 

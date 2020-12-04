@@ -23,7 +23,14 @@ def patients() :
 
             if choice == 1 :
                 specialization = input("\nWhat specialization of doctor would you like to consult with? ")
-                print("No doctors of that specialization") if specialization == 0 else patient.make_appointment(specialization)
+                doctors = patient.get_doctors(specialization)
+                if doctors == 0 :
+                    print("No doctors of that specialization")
+                else :
+                    for i in range(len(doctors)) :
+                        print(f"\n{i + 1} : {doctors[i]}")
+                    selected_doctor = input("\nEnter choice of doctor: ")
+                    patient.make_appointment(selected_doctor)
                 input("\nAppointment made successfully\nPress any key to continue...")
             
             elif choice == 2 :
@@ -47,7 +54,6 @@ def patients() :
         patient.gender = input("Gender ( male/female ): ")
         patient.create_user()
         patients()
-
 
 def doctors() :
 
