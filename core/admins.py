@@ -5,7 +5,12 @@ class Admin :
     def add_employee(self, name, role, specialization) :
 
         ''' Adds a new employee to "/database/doctors.pkl" or "/database/nurses.pkl" or "/database/pharmacists.pkl" in database '''
-
+    
+        with open("database/doctors.pkl", "wb+") as file :
+            doctors=pickle.load(file)
+            doctor=[name,specialization]
+            doctors.append(doctor)
+            pickle.dump(doctors, file)
 
     def update_employee(self, name, role, specialization) :
 
