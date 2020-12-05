@@ -35,30 +35,32 @@ class Patient :
             return 0
         return doctors
 
-    def make_appointment(self,doctor,date) :
+    def make_appointment(self, doctor, date) :
 
         ''' Adds an appointment to "/database/appointments.pkl" in database '''
          
         if date == 1:
             a = datetime.datetime.today()
-            current_date = a.day,a.month,a.year
-            appointment = [doctor,self.name,current_date]
+            current_date = a.day, a.month, a.year
+            appointment = [doctor, self.name, current_date]
         elif date == 2:
             b = datetime.datetime.today()
-            next_date = b.day+1,b.month,b.year
-            appointment = [doctor,self.name,next_date]
+            next_date = b.day+1, b.month, b.year
+            appointment = [doctor, self.name, next_date]
         elif date == 3:
             c = datetime.datetime.today()
-            next_next_date = c.day+2,c.month,c.year
-            appointment = [doctor,self.name,next_next_date]
+            next_next_date = c.day+2, c.month, c.year
+            appointment = [doctor, self.name, next_next_date]
         else:
             return 0
 
-        with open("database/appointments.pkl","rb") as file :
+        with open("database/appointments.pkl", "rb") as file :
             appointments=pickle.load(file)
-        with open("database/appointments.pkl","wb") as file :    
+        with open("database/appointments.pkl", "wb") as file :    
             appointments.append(appointment)
-            pickle.dump(appointments,file)
+            pickle.dump(appointments, file)
+        
+        return 1
            
 
     def update_user(self) :

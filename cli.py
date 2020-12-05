@@ -31,9 +31,13 @@ def patients() :
                     for i in range(len(doctors)) :
                         print(f"\n{i + 1} : {doctors[i]}")
                     selected_doctor = input("\nEnter choice of doctor: ")
-                    time = int(input("When would you like to make an appointment?\n1. Today\n2. Tomorrow\n 3. Day After tomorrow\nEnter choice: "))
-                    patient.make_appointment(selected_doctor, time)
-                input("\nAppointment made successfully\nPress enter to continue...")
+                    while(True) :
+                        time = int(input("\nWhen would you like to make an appointment?\n1. Today\n2. Tomorrow\n3. Day After tomorrow\nEnter choice: "))
+                        if patient.make_appointment(selected_doctor, time) == 1 :
+                            break
+                        else :
+                            print("\nInvalid Input")
+                    input("\nAppointment made successfully\nPress enter to continue...")
             
             elif choice == 2 :
                 appointments = patient.get_appointments()
