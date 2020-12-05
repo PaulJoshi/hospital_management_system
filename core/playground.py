@@ -31,3 +31,8 @@ with open("database/patients.pkl", "wb") as file :
 
 with open("database/patients.pkl", "rb") as file :
     print(pickle.load(file))
+
+with open("database/appointments.pkl", "wb") as file :
+
+    appointments = [["Stephen Strange", "Catnis Everdeen",(4,12,2020)], ["Henry Wu", "Peeta Mellark", (5,12,2020)]]
+    pickle.dump(appointments, file)
