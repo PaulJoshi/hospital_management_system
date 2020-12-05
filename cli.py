@@ -23,7 +23,7 @@ def patients() :
             clrscr()
 
             if choice == 1 :
-                specialization = input("\nWhat specialization of doctor would you like to consult with? ")
+                specialization = input("\nWhat specialization of doctor would you like to consult with? (Ortho/Surgeon/Physician) ")
                 doctors = patient.get_doctors(specialization)
                 if doctors == 0 :
                     print("No doctors of that specialization")
@@ -32,6 +32,7 @@ def patients() :
                         print(f"\n{i + 1} : {doctors[i]}")
                     selected_doctor = input("\nEnter choice of doctor: ")
                     while(True) :
+                        clrscr()
                         time = int(input("\nWhen would you like to make an appointment?\n1. Today\n2. Tomorrow\n3. Day After tomorrow\nEnter choice: "))
                         if patient.make_appointment(selected_doctor, time) == 1 :
                             break
@@ -45,9 +46,9 @@ def patients() :
                 input("\nPress enter to continue...")
 
             elif choice == 3 :
-                patient.name = input("\nEnter your name: ")
-                patient.age = int(input("Enter your age: "))
-                patient.update_user()
+                name = input("\nEnter your name: ")
+                age = int(input("Enter your age: "))
+                patient.update_user(name, age)
                 input("\nDetails updated successfully\nPress enter to continue...")
             
             else :

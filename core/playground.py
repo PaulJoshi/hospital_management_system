@@ -2,7 +2,7 @@ import pickle
 
 with open("database/doctors.pkl", "wb") as file :
     
-    doctors = [["Stephen Strange", "Surgeon"], ["Henry Wu", "Veterinary"], ["Raheem Pate", "Ortho"]]
+    doctors = [["Stephen Strange", "Surgeon"], ["Henry Wu", "Physician"], ["Raheem Pate", "Ortho"], ["Rahul Mayya", "Physician"], ["Abdul Nasir", "Ortho"], ["Karthik Kiran", "Surgeon"]]
     pickle.dump(doctors, file)
 
 
@@ -14,7 +14,7 @@ with open("database/nurses.pkl", "wb") as file :
 
 with open("database/pharmacists.pkl", "wb") as file :
     
-    pharmacists = [["Jodi Rivera", "None"], ["Florence Bloom", "None"], ["Jermaine Bennett", "Ortho"]]
+    pharmacists = [["Jodi Rivera", "None"], ["Florence Bloom", "None"], ["Jermaine Bennett", "None"]]
     pickle.dump(pharmacists, file)
 
 
