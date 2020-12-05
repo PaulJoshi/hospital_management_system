@@ -20,6 +20,7 @@ def patients() :
             clrscr()
             print("\nPatient Dashboard\n\n1. Make an appointment\n2. View Appointments\n3. Update personal information\n4. Logout")
             choice = int(input("\nEnter your choice: "))
+            clrscr()
 
             if choice == 1 :
                 specialization = input("\nWhat specialization of doctor would you like to consult with? ")
@@ -30,33 +31,34 @@ def patients() :
                     for i in range(len(doctors)) :
                         print(f"\n{i + 1} : {doctors[i]}")
                     selected_doctor = input("\nEnter choice of doctor: ")
-                    patient.make_appointment(selected_doctor)
-                input("\nAppointment made successfully\nPress any key to continue...")
+                    time = int(input("When would you like to make an appointment?\n1. Today\n2. Tomorrow\n 3. Day After tomorrow\nEnter choice: "))
+                    patient.make_appointment(selected_doctor, time)
+                input("\nAppointment made successfully\nPress enter to continue...")
             
             elif choice == 2 :
                 appointments = patient.get_appointments()
                 print(appointments)
-                input("\nPress any key to continue...")
+                input("\nPress enter to continue...")
 
             elif choice == 3 :
                 patient.name = input("\nEnter your name: ")
                 patient.age = int(input("Enter your age: "))
                 patient.update_user()
-                input("\nDetails updated successfully\nPress any key to continue...")
+                input("\nDetails updated successfully\nPress enter to continue...")
             
             else :
                 del patient
-                main()
+                break
     
     else :
 
         patient.age = int(input("Enter your age: "))
         patient.gender = input("Gender ( male/female ): ")
         patient.create_user()
+        input("\nNew user created successfully\nPress enter to continue...")
         patients()
 
 def doctors() :
-
 
     clrscr()
     name = input("\nLogin\n\nEnter your name: ")
@@ -71,17 +73,15 @@ def doctors() :
         if choice == 1 :
             appointments = doctor.get_appointment()
             print(appointments)
-            input("\nPress any key to continue...")
+            input("\nPress enter to continue...")
 
         else :
             del doctor
-            main()
+            break
 
 def admins() :
 
     admin = core.admins.Admin()
-
-    clrscr()
 
     while True :
 
@@ -94,33 +94,33 @@ def admins() :
             print("\nEmployees")
             doctors = admin.view_all_employees()
             print(doctors)
-            input("\nPress any key to continue...")
+            input("\nPress enter to continue...")
 
-        if choice == 2 :
+        elif choice == 2 :
             print("\nPatients")
             patients = admin.view_all_patients()
             print(patients)
-            input("\nPress any key to continue...")
+            input("\nPress enter to continue...")
 
-        if choice == 3 :
+        elif choice == 3 :
             print("\nAdd Employee")
             name = input("\nEnter name: ")
             role = input("Enter role: ")
             specialization = input("Enter specialization: ")
             admin.add_employee(name, role, specialization)
-            input("\nEmployee Added Successfully\nPress any key to continue...")
+            input("\nEmployee Added Successfully\nPress enter to continue...")
 
-        if choice == 4 :
+        elif choice == 4 :
             print("\nUpdate Employee")
             name = input("\nEnter name: ")
             role = input("Enter role: ")
             specialization = input("Enter specialization: ")
             admin.update_employee(name, role, specialization)
-            input("\nEmployee Details Updated Successfully\nPress any key to continue...")
+            input("\nEmployee Details Updated Successfully\nPress enter to continue...")
 
         else :
             del admin
-            main()
+            break
 
 def main() :
 
