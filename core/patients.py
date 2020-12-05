@@ -63,9 +63,20 @@ class Patient :
         return 1
            
 
-    def update_user(self) :
+    def update_user(self,name, age) :
 
         ''' Changes the details of given user in "/database/patients.pkl" in database '''
+        with open(r"database\patients.pkl","rb")as file:
+            patients=pickle.load(file)
+        
+        for patient in patients:
+            if patient[0]==self.name:
+                patient[0]=name
+                patient[1]=age
+
+        with open(r"database\patients.pkl","wb")as file:
+            pickle.dump(patients,file)
+
 
     def get_appointments(self) :
 
