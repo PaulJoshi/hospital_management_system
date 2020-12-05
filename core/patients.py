@@ -71,15 +71,13 @@ class Patient :
 
         ''' Get all appointments of given patient name '''
 
-        appointments = [        #temporary hardcoded values
-            {
-                "doctor_name" : "Stephen Strange",
-                "time" : None
-            },
-            {
-                "doctor_name" : "Doc Hudson",
-                "time" : None
-            },
-        ]
+        appointments=[]
+        with open(r"database\appointments.pkl","rb") as file:
+            all_appointments=pickle.load(file)
+
+        for appointment in all_appointments:
+            if appointment[1]==self.name:
+                appointments.append(appointment)
+
 
         return appointments
