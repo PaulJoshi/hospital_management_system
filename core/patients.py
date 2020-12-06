@@ -77,6 +77,20 @@ class Patient :
         with open(r"database\patients.pkl","wb")as file:
             pickle.dump(patients,file)
 
+        
+        with open(r"database\appointments.pkl","rb")as file:
+            appointments=pickle.load(file)
+        
+        for appointment in appointments:
+            if appointment[1]==self.name:
+                appointment[1]=name
+                
+
+        with open(r"database\appointments.pkl","wb")as file:
+            pickle.dump(appointments,file)
+        self.name=name
+        self.age=age
+
 
     def get_appointments(self) :
 
