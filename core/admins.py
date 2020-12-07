@@ -32,7 +32,8 @@ class Admin :
 
         ''' Get details of all patients from database '''
 
+        with open(r"database\patients.pkl","rb")as file:
+            patients=pickle.load(file)
+        
 
-        patients = []
-
-        return patients
+        return patients 
