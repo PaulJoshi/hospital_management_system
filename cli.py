@@ -97,8 +97,8 @@ def admins() :
 
         if choice == 1 :
             print("\nEmployees")
-            doctors = admin.view_all_employees()
-            print(doctors)
+            doctors, nurses, pharmacists = admin.view_all_employees()
+            print(doctors, nurses, pharmacists)
             input("\nPress enter to continue...")
 
         elif choice == 2 :
