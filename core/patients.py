@@ -101,7 +101,7 @@ class Patient :
             all_appointments=pickle.load(file)
 
         for appointment in all_appointments:
-            if appointment[1]==self.name:
+            if appointment[1].lower()==self.name.lower():
                 appointments.append(appointment)
 
 

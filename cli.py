@@ -72,13 +72,19 @@ def doctors() :
     while True :
 
         clrscr()
-        print("\nDoctor's Dashboard\n\n1. See appointments\n2. Logout")
+        print("\nDoctor's Dashboard\n\n1. See appointments\n2. Prescribe medicine\n3. Logout")
         choice = int(input("\nEnter your choice: "))
 
         if choice == 1 :
-            appointments = doctor.get_appointment()
+            appointments = doctor.get_appointments()
             print(appointments)
             input("\nPress enter to continue...")
+        
+        elif choice == 2 :
+            patient_name = input("Enter name of patient: ")
+            prescription = input("Enter prescription for patient: ")
+            doctor.prescribe_medicine(patient_name, prescription)
+            input("\nPrescription sent\nPress enter to continue...")
 
         else :
             del doctor
