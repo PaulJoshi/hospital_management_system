@@ -3,10 +3,18 @@ import time
 
 class Doctor :
 
-    def __init__(self, name):
+    def __new__(cls, name):
 
+        with open("database/doctors.pkl", "rb") as file :
+            for doctor in pickle.load(file) :
+                if doctor[0].lower() == name.lower() :
+                    specialization = doctor[1]
+                    return super(Doctor, cls).__new__(cls) 
+        return 0
+    
+    def __init(self, name) :
         self.name = name
-        self.specialization = None  # Get specialization from database
+        self.specialization = specialization
     
 
     def get_appointments(self, doctor_name) :

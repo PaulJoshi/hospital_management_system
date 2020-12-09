@@ -69,7 +69,7 @@ def doctors() :
     name = input("\nLogin\n\nEnter your name: ")
     doctor = core.employees.Doctor(name)
 
-    while True :
+    while doctor != 0 :
 
         clrscr()
         print("\nDoctor's Dashboard\n\n1. See appointments\n2. Prescribe medicine\n3. Logout")
@@ -89,6 +89,10 @@ def doctors() :
         else :
             del doctor
             break
+    
+    else :
+        print("Doctor name does not exist")
+        input("\nPress enter to continue...")
 
 def admins() :
 
