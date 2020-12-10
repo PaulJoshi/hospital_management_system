@@ -8,13 +8,15 @@ class Doctor :
         with open("database/doctors.pkl", "rb") as file :
             for doctor in pickle.load(file) :
                 if doctor[0].lower() == name.lower() :
-                    specialization = doctor[1]
                     return super(Doctor, cls).__new__(cls) 
         return 0
     
     def __init__(self, name) :
         self.name = name
-        self.specialization = specialization
+        with open("database/doctors.pkl", "rb") as file :
+            for doctor in pickle.load(file) :
+                if doctor[0].lower() == name.lower() :
+                    self.specialization = doctor[1]
     
 
     def get_appointments(self) :
