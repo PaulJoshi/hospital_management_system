@@ -12,29 +12,25 @@ class Doctor :
                     return super(Doctor, cls).__new__(cls) 
         return 0
     
-    def __init(self, name) :
+    def __init__(self, name) :
         self.name = name
         self.specialization = specialization
     
 
-    def get_appointments(self, doctor_name) :
+    def get_appointments(self) :
 
         ''' Get all appointments of given doctor name '''
 
+        with open ("database/appointments.pkl","rb") as file:
+            all_appointments=pickle.load(file)
+        appointments=[]
+        dictionary={}
+        for appointment in all_appointments:
+            if appointment[0].lower()==self.name.lower():
+                dictionary[ "patient_name"]=appointment[1]
+                dictionary[ "time"]=appointment[2]
+                appointments.append(dictionary)
 
-
-
-
-        appointments = [        #temporary hardcoded values
-            {
-                "patient_name" : "John Doe",
-                "time" : None
-            },
-            {
-                "patient_name" : "Jane Austen",
-                "time" : None
-            },
-        ]
 
         return appointments
     
