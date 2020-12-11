@@ -13,12 +13,17 @@ class Patient :
     def create_user(self) :
 
         ''' Adds a new patient to "/database/patients.pkl" in database '''
+        
 
     def patient_exists(self) :
 
         ''' Returns 1 if patient already exists, else, returns 0 '''
-
-        return 1
+        with open("database/patients.pkl","rb") as file:
+            all_patients=pickle.load(file)
+        for patient in all_patients:
+            if patient[0]==self.name:
+                return 1
+        return 0
     
 
     def get_doctors(self, specialization) :
