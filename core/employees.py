@@ -30,7 +30,7 @@ class Doctor :
         for appointment in all_appointments:
             if appointment[0].lower()==self.name.lower():
                 dictionary[ "patient_name"]=appointment[1]
-                dictionary[ "time"]=appointment[2]
+                dictionary[ "date"]=appointment[2]
                 appointments.append(dictionary)
 
 
