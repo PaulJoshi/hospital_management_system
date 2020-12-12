@@ -10,15 +10,26 @@ class Patient :
         self.gender = ""
     
 
-    def create_user(self) :
+    def create_user(self,age,gender) :
 
         ''' Adds a new patient to "/database/patients.pkl" in database '''
-
+        self.age=age
+        self.gender=gender
+        patient=[self.name,self.age,self.gender]
+        with open("database/patients.pkl","rb") as file:
+            all_patients=pickle.load(file)
+        all_patients.append(patient)
+        with open("database/patients.pkl","wb") as file:
+            pickle.dump(all_patients,file)
     def patient_exists(self) :
 
         ''' Returns 1 if patient already exists, else, returns 0 '''
-
-        return 1
+        with open("database/patients.pkl","rb") as file:
+            all_patients=pickle.load(file)
+        for patient in all_patients:
+            if patient[0]==self.name:
+                return 1
+        return 0
     
 
     def get_doctors(self, specialization) :
@@ -66,7 +77,7 @@ class Patient :
     def update_user(self,name, age) :
 
         ''' Changes the details of given user in "/database/patients.pkl" in database '''
-        with open(r"database\patients.pkl","rb")as file:
+        with open("database/patients.pkl","rb")as file:
             patients=pickle.load(file)
         
         for patient in patients:
@@ -74,11 +85,11 @@ class Patient :
                 patient[0]=name
                 patient[1]=age
 
-        with open(r"database\patients.pkl","wb")as file:
+        with open("database/patients.pkl","wb")as file:
             pickle.dump(patients,file)
 
         
-        with open(r"database\appointments.pkl","rb")as file:
+        with open("database/appointments.pkl","rb")as file:
             appointments=pickle.load(file)
         
         for appointment in appointments:
@@ -86,7 +97,7 @@ class Patient :
                 appointment[1]=name
                 
 
-        with open(r"database\appointments.pkl","wb")as file:
+        with open("database/appointments.pkl","wb")as file:
             pickle.dump(appointments,file)
         self.name=name
         self.age=age
@@ -97,7 +108,7 @@ class Patient :
         ''' Get all appointments of given patient name '''
 
         appointments=[]
-        with open(r"database\appointments.pkl","rb") as file:
+        with open("database/appointments.pkl","rb") as file:
             all_appointments=pickle.load(file)
 
         for appointment in all_appointments:
