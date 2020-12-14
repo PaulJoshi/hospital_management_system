@@ -21,16 +21,24 @@ class Admin :
 
         ''' Get details of all doctors from database '''
 
+        with open(r"database\doctors.pkl","rb")as file:
+            doctors=pickle.load(file)
 
-        doctors = []
+        with open(r"database\nurses.pkl","rb")as file:
+            nurses=pickle.load(file)
 
-        return doctors
+        with open(r"database\pharmacists.pkl","rb")as file:
+            pharmacists=pickle.load(file)
+      
+
+        return doctors,nurses,pharmacists
 
     def view_all_patients(self) :
 
         ''' Get details of all patients from database '''
 
+        with open(r"database\patients.pkl","rb")as file:
+            patients=pickle.load(file)
+        
 
-        patients = []
-
-        return patients
+        return patients 
