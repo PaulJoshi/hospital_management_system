@@ -18,7 +18,7 @@ def patients() :
         while True :
 
             clrscr()
-            print("\nPatient Dashboard\n\n1. Make an appointment\n2. View Appointments\n3. Update personal information\n4. Logout")
+            print(f"\nWelcome {patient.name}\n\n1. Make an appointment\n2. View Appointments\n3. Update personal information\n4. Logout")
             choice = int(input("\nEnter your choice: "))
             clrscr()
 
@@ -26,14 +26,15 @@ def patients() :
                 specialization = input("\nWhat specialization of doctor would you like to consult with? (Ortho/Surgeon/Physician) ")
                 doctors = patient.get_doctors(specialization)
                 if doctors == 0 :
-                    print("No doctors of that specialization")
+                    print("\nNo doctors of that specialization")
                 else :
+                    print(f"\n\n \tDOCTOR{19 * ' '}SPECIALIZATION\n")
                     for i in range(len(doctors)) :
-                        print(f"\n{i + 1} : {doctors[i]}")
-                    selected_doctor = int(input("\nEnter choice of doctor: "))
+                        print(f"{i + 1}\t{doctors[i][0]}{(25 - len(doctors[i][0])) * ' '}{doctors[i][1]}")
+                    selected_doctor = int(input("\n\nEnter choice of doctor: "))
                     while(True) :
                         clrscr()
-                        time = int(input("\nWhen would you like to make an appointment?\n1. Today\n2. Tomorrow\n3. Day After tomorrow\nEnter choice: "))
+                        time = int(input("\nWhen would you like to make an appointment?\n\n1. Today\n2. Tomorrow\n3. Day After tomorrow\n\nEnter choice: "))
                         if patient.make_appointment(doctors[selected_doctor-1][0], time) == 1 :
                             break
                         else :
@@ -42,10 +43,19 @@ def patients() :
             
             elif choice == 2 :
                 appointments = patient.get_appointments()
-                print(appointments)
+                if len(appointments) == 0 :
+                    print("\nNo appointments booked")
+                else :
+                    print(f"\nDOCTOR{19 * ' '}DATE{18 * ' '}PRESCRIPTION\n")
+                    for appointment in appointments :
+                        if len(appointment) == 3 :
+                            print(f"{appointment[0]}{(25 - len(appointment[0])) * ' '}{appointment[2]}{(22 - len(str(appointment[2]))) * ' '}None")
+                        else :
+                            print(f"{appointment[0]}{(25 - len(appointment[0])) * ' '}{appointment[2]}{(22 - len(str(appointment[2]))) * ' '}{appointment[3]}")
                 input("\nPress enter to continue...")
 
             elif choice == 3 :
+                print("\nUpdate Personal Information")
                 name = input("\nEnter your name: ")
                 age = int(input("Enter your age: "))
                 patient.update_user(name, age)
@@ -72,12 +82,15 @@ def doctors() :
     while doctor != 0 :
 
         clrscr()
-        print("\nDoctor's Dashboard\n\n1. See appointments\n2. Prescribe medicine\n3. Logout")
+        print(f"\nWelcome Dr. {doctor.name}\n\n1. See appointments\n2. Prescribe medicine\n3. Logout")
         choice = int(input("\nEnter your choice: "))
+        clrscr()
 
         if choice == 1 :
             appointments = doctor.get_appointments()
-            print(appointments)
+            print(f"\nPATIENT{18 * ' '}DATE\n")
+            for appointment in appointments :
+                print(appointment["patient_name"], (23 - len(appointment["patient_name"])) * ' ', appointment["date"])
             input("\nPress enter to continue...")
         
         elif choice == 2 :
@@ -108,14 +121,24 @@ def admins() :
         if choice == 1 :
             print("\nEmployees")
             doctors, nurses, pharmacists = admin.view_all_employees()
-            print(doctors, nurses, pharmacists)
-            input("\nPress enter to continue...")
+            print(f"\nDOCTOR{19 * ' '}SPECIALIZATION{9 * ' '}\n")
+            for doctor in doctors :
+                print(f"{doctor[0]}{(25 - len(doctor[0])) * ' '}{doctor[1]}")
+            print(f"\n\nNURSE{20 * ' '}SPECIALIZATION{9 * ' '}\n")
+            for nurse in nurses :
+                print(f"{nurse[0]}{(25 - len(nurse[0])) * ' '}{nurse[1]}")
+            print(f"\n\nPHARMACIST{15 * ' '}SPECIALIZATION{9 * ' '}\n")
+            for pharmacist in pharmacists :
+                print(f"{pharmacist[0]}{(25 - len(pharmacist[0])) * ' '}{pharmacist[1]}")
+            input("\n\nPress enter to continue...")
 
         elif choice == 2 :
             print("\nPatients")
             patients = admin.view_all_patients()
-            print(patients)
-            input("\nPress enter to continue...")
+            print(f"\n\nNAME{21 * ' '}AGE{15 * ' '}GENDER\n")
+            for patient in patients :
+                print(f"{patient[0]}{(25 - len(patient[0])) * ' '}{patient[1]}{(18 - len(str(patient[1]))) * ' '}{patient[2]}")
+            input("\n\nPress enter to continue...")
 
         elif choice == 3 :
             print("\nAdd Employee")

@@ -4,37 +4,42 @@ class Admin :
 
     def add_employee(self, name, role, specialization) :
 
-        ''' Adds a new employee to "/database/doctors.pkl" or "/database/nurses.pkl" or "/database/pharmacists.pkl" in database '''
+        ''' Adds a new employee to database '''
     
-        if role.lower()== 'doctor':
+        if role.lower() == 'doctor':
             with open("database/doctors.pkl", "rb") as file :
-                doctors=pickle.load(file)
+                doctors = pickle.load(file)
             with open("database/doctors.pkl", "wb") as file :
-                doctor=[name,specialization]
+                doctor = [name, specialization]
                 doctors.append(doctor)
                 pickle.dump(doctors, file)
             return 1
-        elif role.lower()== 'nurse':
+
+        elif role.lower() == 'nurse':
             with open("database/nurses.pkl", "rb") as file :
-                nurses=pickle.load(file)
+                nurses = pickle.load(file)
             with open("database/nurses.pkl", "wb") as file :
-                nurse=[name,specialization]
+                nurse = [name, specialization]
                 nurses.append(nurse)
                 pickle.dump(nurses, file)
             return 1
-        elif role.lower()== 'pharmacist':
+
+        elif role.lower() == 'pharmacist':
             with open("database/pharmacists.pkl", "rb") as file :
-                pharmacists=pickle.load(file)
+                pharmacists = pickle.load(file)
             with open("database/pharmacists.pkl", "wb") as file :
-                pharmacist=[name,specialization]
+                pharmacist = [name, specialization]
                 pharmacists.append(pharmacist)
                 pickle.dump(pharmacists, file)
             return 1
+
         return 0
+
 
     def update_employee(self, name, role, specialization) :
 
-        ''' Updates an employee's details in "/database/doctors.pkl" or "/database/nurses.pkl" or "/database/pharmacists.pkl" in database '''
+        ''' Updates an employee's details in database '''
+
         with open("database/doctors.pkl", "rb") as file :
             doctors=pickle.load(file)
         for doctor in doctors:
@@ -62,29 +67,27 @@ class Admin :
         self.add_employee(name, role, specialization)
         
 
-
     def view_all_employees(self) :
 
-        ''' Get details of all doctors from database '''
+        ''' Returns details of all doctors from database '''
 
-        with open(r"database\doctors.pkl","rb")as file:
-            doctors=pickle.load(file)
+        with open("database/doctors.pkl", "rb") as file:
+            doctors = pickle.load(file)
 
-        with open(r"database\nurses.pkl","rb")as file:
-            nurses=pickle.load(file)
+        with open("database/nurses.pkl", "rb") as file:
+            nurses = pickle.load(file)
 
-        with open(r"database\pharmacists.pkl","rb")as file:
-            pharmacists=pickle.load(file)
+        with open("database/pharmacists.pkl", "rb") as file:
+            pharmacists = pickle.load(file)
       
+        return doctors, nurses, pharmacists
 
-        return doctors,nurses,pharmacists
 
     def view_all_patients(self) :
 
-        ''' Get details of all patients from database '''
+        ''' Returns details of all patients from database '''
 
-        with open(r"database\patients.pkl","rb")as file:
-            patients=pickle.load(file)
+        with open("database/patients.pkl", "rb") as file:
+            patients = pickle.load(file)
         
-
         return patients 
